@@ -3,11 +3,13 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
+#from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 
 def my_main():
 
-  base_credit = pd.read_csv("credit_data.csv")
+  #base_credit = pd.read_csv("credit_data.csv")
+  base_census = pd.read_csv("/content/census.csv")
   # print(base_credit)
   # print(base_credit.tail())
   # print(base_credit.describe())
@@ -29,9 +31,22 @@ def my_main():
   # print(base_credit3)
   # print(base_credit['age'].mean())
 
-  print(base_credit.isnull().sum())
-  base_credit['age'].fillna(base_credit['age'].mean(), inplace=True)
-  print(base_credit.loc[pd.isnull(base_credit['age'])])
+  # print(base_credit.isnull().sum())
+  #base_credit['age'].fillna(base_credit['age'].mean(), inplace = True)
+  # print(base_credit.loc[pd.isnull(base_credit['age'])])
+
+  # print(base_census)
+
+  #np.unique(base_census['income'], return_counts=True)
+  #sns.countplot(x = base_census['income']);
+  #grafico = px.treemap(base_census, path=['workclass', 'age'])
+  # grafico.show()
+
+  x_census = base_census.iloc[:, 14].values
+  # print(x_census)
+
+  label = LabelEncoder()
+  teste = label.fit_transform(x_census)
 
 
 my_main()
